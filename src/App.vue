@@ -1,60 +1,57 @@
 <template>
-  <div class="auth-content">
-		<div class="auth-modal">
-			<h1>Cadastro</h1>
-			<input type="email" v-model="user.email" name="email" placeholder="Informe o e-mail..."><br>
-			<input type="password" v-model="user.password" name="password" placeholder="Informe a senha..."><br>
-			<button @click="create">Registrar</button>
-		</div>
-		<div class="auth-modal">
-			<h1>Login</h1>
-			<input type="email" v-model="user.email" name="email" placeholder="Informe o e-mail..."><br>
-			<input type="password" v-model="user.password" name="password" placeholder="Informe a senha..."><br>
-			<button @click="authenticate">Entrar</button>
-		</div>
-  </div>
+	<div id="app" :class="{'hide-menu': !isMenuVisible}">
+		<Header />
+		<Menu v-if="isMenuVisible" />
+		<Content />
+		<Footer />
+	</div>
 </template>
 
 <script>
-import axios from 'axios';
+import Header from '@/components/template/Header';
+import Menu from '@/components/template/Menu';
+import Content from '@/components/template/Content';
+import Footer from '@/components/template/Footer';
 
 export default {
 	name: 'App',
+	components: { Header, Menu, Content, Footer },
 	data: function() {
 		return {
-			user: {}
-		}
-	}, methods: {
-		create() {
-			axios.post('http://localhost:3333/register', this.user)
-				.then(data => console.log(data.data))
-				.catch(data => console.log(data));
-		},
-		authenticate() {
-			axios.post('http://localhost:3333/authenticate', this.user)
-				.then(data => console.log(data.data))
-				.catch(data => console.log(data));
+			user: {},
+			isMenuVisible: false
 		}
 	}
 }
 </script>
 
 <style>
-	.auth-content {
-		background: linear-gradient(to right, #1E469A, #49A7C1);
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+  * {
+		font-family: sans-serif;
   }
 
-	.auth-modal {
-		background-color: #FFF;
-		width: 300px;
-		padding: 30px;
-		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-  }
+	body {
+		margin: 0;
+	}
+
+	#app {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
+		height: 100vh;
+		display: grid;
+		grid-auto-rows: 80px 1fr 115px;
+		grid-template-columns: 330px 1fr;
+		grid-template-areas:
+			"header header"
+			"menu content"
+			"menu footer";
+	}
+
+	#app.hide-menu {
+		grid-template-areas:
+			"header header"
+			"content content"
+			"footer footer";
+	}
 </style>

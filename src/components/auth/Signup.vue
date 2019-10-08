@@ -4,6 +4,18 @@
 		<div class="signup-modal">
 			<h1 class="signup-title">Cadastro</h1><hr/>
 			<input
+				type="text"
+				v-model="firstName"
+				name="first-name"
+				placeholder="Informe o nome..."
+			>
+			<input
+				type="text"
+				v-model="lastName"
+				name="last-name"
+				placeholder="Informe o sobrenome..."
+			>
+			<input
 				type="email"
 				v-model="user.email"
 				name="email"
@@ -31,9 +43,19 @@ import axios from 'axios';
 
 export default {
 	name: 'Signup',
-	data: function() {
+	data: function () {
 		return {
-			user: {}
+			user: {},
+			firstName: '',
+			lastName: ''
+		}
+	},
+	watch: {
+		firstName: function () {
+			this.user.name = `${this.firstName} ${this.lastName}`;
+		},
+		lastName: function () {
+			this.user.name = `${this.firstName} ${this.lastName}`;
 		}
 	},
 	methods: {

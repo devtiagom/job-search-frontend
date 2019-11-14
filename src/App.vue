@@ -1,6 +1,6 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<Header title="jobSearch" :hideToggle="false" />
+		<Header title="jobSearch" :hideToggle="false" :hideNavbarMenu="false" />
 		<Menu v-if="isMenuVisible" />
 		<Content />
 		<Footer />
@@ -37,8 +37,8 @@ export default {
 
 		height: 100vh;
 		display: grid;
-		grid-auto-rows: 80px 1fr 115px;
-		grid-template-columns: 330px 1fr;
+		grid-auto-rows: 60px 1fr 100px;
+		grid-template-columns: 250px 1fr;
 		grid-template-areas:
 			"header header"
 			"menu content"

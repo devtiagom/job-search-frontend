@@ -40,6 +40,7 @@
 
 <script>
 import axios from 'axios';
+import { baseURL, showError, userKey } from '@/global';
 
 export default {
 	name: 'Signup',
@@ -62,7 +63,7 @@ export default {
 		register() {
 			axios.post('http://localhost:3333/register', this.user)
 				.then(response => console.log(response.data))
-				.catch(response => console.log(response));
+				.catch(error => { showError(error.response.data.msg) });
 		}
 	}
 }
@@ -78,7 +79,7 @@ export default {
 
 	.signup-modal {
 		background-color: #FFF;
-		width: 400px;
+		width: 300px;
 		padding: 40px;
 		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 		display: flex;
@@ -87,8 +88,8 @@ export default {
 	}
 
 	.signup-title {
-		font-size: 1.8rem;
-		font-weight: 100;
+		font-size: 1.5rem;
+		font-weight: bold;
 		color: rgb(120, 120, 120);
 		margin-top: 15px;
 		margin-bottom: 15px;
@@ -97,7 +98,7 @@ export default {
 	.signup-modal hr {
 		border: 0;
 		margin-top: 0px;
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 		width: 100%;
 		height: 1px;
 		background-image: linear-gradient(to right,
@@ -114,21 +115,24 @@ export default {
 		margin-bottom: 15px;
 		padding: 3px 8px;
 		/* outline: none; */
+		font-size: 0.8rem;
 	}
 
 	.signup-modal button {
 		align-self: flex-end;
-		background-color: rgba(0, 180, 219, 0.7);
+		background: rgba(0, 131, 176, 0.85);
 		color: #FFF;
+		font-size: 1rem;
+		font-weight: bold;
 		padding: 5px 15px;
 		border: none;
 		border-radius: 3px;
 		width: 100%;
-		height: 40px;
+		height: 35px;
 		cursor: pointer;
 	}
 
 	.signup-modal button:hover {
-		background-color: rgba(0, 180, 219, 1);
+		background: rgba(0, 131, 176, 1);
 	}
 </style>

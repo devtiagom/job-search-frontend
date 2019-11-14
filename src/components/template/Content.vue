@@ -13,8 +13,7 @@ export default {
 <style>
 	.content {
 		grid-area: content;
-		/* background: transparent; */
-		background: linear-gradient(to right, #ece9e6, #ffffff);
+		background: #ECE9E6;
 		padding: 20px;
 	}
 </style>

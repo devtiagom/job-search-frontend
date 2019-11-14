@@ -61,9 +61,12 @@ export default {
 	},
 	methods: {
 		register() {
-			axios.post('http://localhost:3333/register', this.user)
-				.then(response => console.log(response.data))
-				.catch(error => { showError(error.response.data.msg) });
+			axios.post(`${baseURL}/register`, this.user)
+				.then(response => {
+					this.$toasted.global.defaultSuccess();
+					this.$router.push({ path: '/signin' });
+				})
+				.catch(error => showError(error.response.data.msg));
 		}
 	}
 }

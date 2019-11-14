@@ -1,7 +1,7 @@
 <template>
-	<div id="app" :class="{'hide-menu': !isMenuVisible}">
-		<Header title="jobSearch" :hideToggle="false" :hideNavbarMenu="false" />
-		<Menu v-if="isMenuVisible" />
+	<div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
+		<Header title="jobSearch" :hideToggle="!user" :hideNavbarMenu="!user" />
+		<Menu v-if="user" />
 		<Content />
 		<Footer />
 	</div>
@@ -18,7 +18,7 @@ import Footer from '@/components/template/Footer';
 export default {
 	name: 'App',
 	components: { Header, Menu, Content, Footer },
-	computed: mapState(['isMenuVisible'])
+	computed: mapState(['isMenuVisible', 'user'])
 }
 </script>
 

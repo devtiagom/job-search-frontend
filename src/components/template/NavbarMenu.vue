@@ -57,7 +57,7 @@
 							<i class="fa fa-lg fa-cog"></i>Configurações
 						</router-link>
 
-						<a href=""><i class="fa fa-lg fa-sign-out"></i>Sair</a>
+						<a href @click.prevent="logout"><i class="fa fa-lg fa-sign-out"></i>Sair</a>
 					</div>
 				</div>
 				
@@ -69,6 +69,8 @@
 <script>
 	import { mapState } from 'vuex';
 	import Gravatar from 'vue-gravatar';
+
+	import { userKey } from '@/global';
 
 	export default {
 		name: 'NavbarMenu',
@@ -82,6 +84,11 @@
 		methods: {
 			toggleShowUserDropdownContent() {
 				this.showUserDropdownContent = !this.showUserDropdownContent;
+			},
+			logout() {
+				localStorage.removeItem(userKey);
+				this.$store.commit('setUser', null);
+				this.$router.push({ name: 'signin' });
 			}
 		},
 		mounted() {

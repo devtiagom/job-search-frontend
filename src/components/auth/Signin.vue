@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios';
+import { baseURL, showError, userKey } from '@/global';
 
 export default {
 	name: 'Signin',
@@ -31,9 +32,13 @@ export default {
 	},
 	methods: {
 		authenticate() {
-			axios.post('http://localhost:3333/authenticate', this.user)
-				.then(response => console.log(response.data))
-				.catch(response => console.log(response));
+			axios.post(`${baseURL}/authenticate`, this.user)
+				.then(response => {
+					this.$store.commit('setUser', response.data);
+					localStorage.setItem(userKey, JSON.stringify(response.data));
+					this.$router.push({ path: '/' });
+				})
+				.catch(error => showError(error.response.data.msg));
 		}
 	}
 }

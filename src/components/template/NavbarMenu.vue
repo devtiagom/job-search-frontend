@@ -45,6 +45,7 @@
 
 				<div class="user-dropdown-content-container" v-show="showUserDropdownContent">
 					<div class="user-dropdown-content-box">
+						<h1>{{ user.name }}</h1>
 						<router-link to="/admin">
 							<i class="fa fa-lg fa-cogs"></i>Administração
 						</router-link>
@@ -218,6 +219,13 @@
 		position: absolute;
 		left: 83%;
 		top: -15%;
+	}
+
+	.user-dropdown-content-box h1 {
+		color: #727272;
+		font-size: 1rem;
+		font-weight: 100;
+		margin: 3px auto;
 	}
 
 	.user-dropdown-content-box a {

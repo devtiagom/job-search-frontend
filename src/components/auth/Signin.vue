@@ -38,7 +38,7 @@ export default {
 					localStorage.setItem(userKey, JSON.stringify(response.data));
 					this.$router.push({ path: '/' });
 				})
-				.catch(error => showError(error.response.data.msg));
+				.catch(error => showError(error.response.data));
 		}
 	}
 }

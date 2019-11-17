@@ -2,8 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '@/components/home/Home';
-import Signup from '@/components/auth/Signup';
-import Signin from '@/components/auth/Signin';
+import Auth from '@/components/auth/Auth';
 
 Vue.use(VueRouter);
 
@@ -12,13 +11,9 @@ const routes = [{
     path: '/',
     component: Home
 },{
-    name: 'signin',
-    path: '/signin',
-    component: Signin
-}, {
-    name: 'signup',
-    path: '/signup',
-    component: Signup
+    name: 'auth',
+    path: '/auth',
+    component: Auth
 }];
 
 export default new VueRouter({

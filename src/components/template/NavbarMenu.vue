@@ -89,7 +89,7 @@
 			logout() {
 				localStorage.removeItem(userKey);
 				this.$store.commit('setUser', null);
-				this.$router.push({ name: 'signin' });
+				this.$router.push({ name: 'auth' });
 			}
 		},
 		mounted() {
@@ -218,7 +218,7 @@
 
 		position: absolute;
 		left: 83%;
-		top: -15%;
+		top: -14%;
 	}
 
 	.user-dropdown-content-box h1 {
